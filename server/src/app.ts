@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import sequelize from "./config/DB";
 import mainSeederFunc from "./seeders/mainSeeder";
