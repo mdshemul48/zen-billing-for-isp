@@ -13,11 +13,12 @@ const User = sequelize.define(
       autoIncrement: true,
     },
 
-    name: { type: Sequelize.STRING },
+    name: { allowNull: false, type: Sequelize.STRING },
 
-    email: { type: Sequelize.STRING },
+    email: { allowNull: false, type: Sequelize.STRING },
 
     password: {
+      allowNull: false,
       type: Sequelize.STRING,
       set(value: string) {
         const saltRounds = 10;
@@ -28,6 +29,7 @@ const User = sequelize.define(
     },
 
     role: {
+      allowNull: false,
       type: Sequelize.ENUM("reseller", "admin", "employee"),
       defaultValue: "admin",
     },
