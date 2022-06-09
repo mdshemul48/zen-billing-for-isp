@@ -2,8 +2,17 @@ import sequelize from "../config/DB";
 import Sequelize from "sequelize";
 import bcrypt from "bcryptjs";
 
-const User = sequelize.define(
-  "user",
+class User extends Sequelize.Model {
+  readonly id!: number;
+  readonly name!: string;
+  email!: string;
+  password!: string;
+  role!: "admin" | "reseller" | "employee";
+  readonly createdAt!: Date;
+  readonly updatedAt!: Date;
+}
+
+User.init(
   {
     id: {
       allowNull: false,
@@ -34,7 +43,7 @@ const User = sequelize.define(
       defaultValue: "admin",
     },
   },
-  { timestamps: true }
+  { sequelize, modelName: "user", createdAt: "created_at", updatedAt: "updated_at" }
 );
 
 export default User;

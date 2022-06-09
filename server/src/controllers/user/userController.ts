@@ -32,13 +32,35 @@ export const createUser = async (req: Request, res: Response) => {
   res.send(user);
 };
 
+// @route   POST api/users/login
+// @desc    Login user
+// @access  Public
+export const userLoginValidation = [
+  body("email").isEmail().withMessage("Email is not valid"),
+  body("password").isLength({ min: 5 }).withMessage("Password must be at least 5 characters long"),
+];
+
 export const userLogin = async (req: Request, res: Response) => {
   const { email, password } = <userInterface>req.body;
 
-  const user: userInterface = await User.findOne({ where: { email } }) as ;
+  const user = await User.findOne({ where: { email } });
   if (!user) {
     return res.status(404).json({ msg: "User not found" });
   }
 
   const isMatch = bcrypt.compareSync(password, user.password);
+  if (!isMatch) {
+    return res.status(400).json({ msg: "Invalid credentials" });
+  }
+
+  res.status(200).json({
+    msg: "User logged in",
+
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+  });
 };
