@@ -14,7 +14,7 @@ const authentication = async (req: modifiedRequest, res: Response, next: NextFun
     if (!decoded) {
       return res.status(401).json({ msg: "Token is not valid" });
     }
-    console.log(decoded);
+
     req.user = decoded;
     next();
   } catch (err) {
