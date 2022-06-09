@@ -1,9 +1,10 @@
 import { Router } from "express";
 
-import { createUserValidation, createUser } from "../controllers/user/userController";
+import { createUserValidation, createUser, userLoginValidation, userLogin } from "../controllers/user/userController";
 
 const router = Router();
 
-router.route("/users").post(createUserValidation, createUser);
+router.route("/").post(createUserValidation, createUser);
+router.post("/login", userLoginValidation, userLogin);
 
 export default router;
