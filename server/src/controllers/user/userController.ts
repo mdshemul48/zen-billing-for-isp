@@ -43,6 +43,7 @@ export const createUser = async (req: Request, res: Response) => {
     password,
     role,
   });
+
   res.status(201).json({
     msg: "User created successfully",
     user: {
