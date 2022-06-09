@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { body, validationResult } from "express-validator";
 
 import User from "../../model/User";
@@ -41,26 +42,37 @@ export const userLoginValidation = [
 ];
 
 export const userLogin = async (req: Request, res: Response) => {
-  const { email, password } = <userInterface>req.body;
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
 
-  const user = await User.findOne({ where: { email } });
-  if (!user) {
-    return res.status(404).json({ msg: "User not found" });
+    const { email, password } = <userInterface>req.body;
+
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(404).json({ msg: "Invalid credentials" });
+    }
+
+    const isMatch = bcrypt.compareSync(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ msg: "Invalid credentials" });
+    }
+
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!, { expiresIn: "1 days" });
+
+    res.status(200).json({
+      msg: "User logged in",
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ msg: (err as Error).message });
   }
-
-  const isMatch = bcrypt.compareSync(password, user.password);
-  if (!isMatch) {
-    return res.status(400).json({ msg: "Invalid credentials" });
-  }
-
-  res.status(200).json({
-    msg: "User logged in",
-
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    },
-  });
 };
