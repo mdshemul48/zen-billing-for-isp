@@ -1,7 +1,7 @@
 export default interface userInterface {
-  id?: Number;
-  name: String;
-  email: String;
-  password: String;
+  id?: number;
+  name: string;
+  email: string;
+  password: string;
   role: "admin" | "reseller" | "employee";
 }

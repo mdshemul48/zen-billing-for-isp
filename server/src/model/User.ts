@@ -1,6 +1,6 @@
 import sequelize from "../config/DB";
 import Sequelize from "sequelize";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const User = sequelize.define(
   "user",

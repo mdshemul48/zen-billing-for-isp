@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express from "express";
+import express, { Application } from "express";
 import sequelize from "./config/DB";
 import mainSeederFunc from "./seeders/mainSeeder";
 
-const app = express();
+const app: Application = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
