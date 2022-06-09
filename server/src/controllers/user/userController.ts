@@ -24,13 +24,34 @@ export const createUser = async (req: Request, res: Response) => {
 
   const { name, email, password, role } = <userInterface>req.body;
 
+  const alreadyExist = await User.findOne({ where: { email } });
+  if (alreadyExist) {
+    return res.status(400).json({
+      errors: [
+        {
+          msg: "User already exist with this email",
+          param: "email",
+          location: "body",
+        },
+      ],
+    });
+  }
+
   const user = await User.create({
     name,
     email,
     password,
     role,
   });
-  res.send(user);
+  res.status(201).json({
+    msg: "User created successfully",
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
+  });
 };
 
 // @route   POST api/users/login
