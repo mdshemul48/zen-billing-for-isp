@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 class User extends Sequelize.Model {
   readonly id!: number;
-  readonly name!: string;
+  name!: string;
   email!: string;
   password!: string;
   role!: "admin" | "reseller" | "employee";
