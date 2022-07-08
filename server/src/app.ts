@@ -11,7 +11,9 @@ import Reseller from "./model/Reseller";
 import Client from "./model/Client";
 // routes imports
 import userRoutes from "./routes/userRoutes";
+import resellerRoutes from "./routes/resellerRoutes";
 
+// application config
 const app: Application = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
@@ -19,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // all Routes
 app.use("/api/users", userRoutes);
+app.use("/api/reseller", resellerRoutes);
 
 // db Relations
 User.hasMany(Reseller);
