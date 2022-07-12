@@ -9,6 +9,7 @@ import mainSeederFunc from "./seeders/mainSeeder";
 import User from "./model/User";
 import Reseller from "./model/Reseller";
 import Client from "./model/Client";
+
 // routes imports
 import userRoutes from "./routes/userRoutes";
 import resellerRoutes from "./routes/resellerRoutes";
