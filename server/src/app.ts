@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // all Routes
-app.use("/api/users", userRoutes);
+app.use("/api/user", userRoutes);
 app.use("/api/reseller", resellerRoutes);
 app.use("/api/mikroTik", mikroTikRoutes);
 

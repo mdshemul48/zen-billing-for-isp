@@ -6,7 +6,7 @@ import { body, validationResult } from "express-validator";
 import User from "../../model/User";
 import userInterface from "../../types/UserType";
 
-// @route   POST api/users
+// @route   POST api/user
 // @desc    Register user
 // @access  Private (only for admin)
 export const createUserValidation = [
