@@ -33,6 +33,7 @@ MikroTik.init(
     username: {
       type: Sequelize.STRING,
       allowNull: false,
+      defaultValue: 8728,
     },
     password: {
       type: Sequelize.STRING,
