@@ -45,7 +45,7 @@ MikroTik.init(
     },
     remarks: {
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
 
