@@ -13,7 +13,7 @@ import Client from "./model/Client";
 // routes imports
 import userRoutes from "./routes/userRoutes";
 import resellerRoutes from "./routes/resellerRoutes";
-
+import mikroTikRoutes from "./routes/mikroTikRoutes";
 // application config
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 // all Routes
 app.use("/api/users", userRoutes);
 app.use("/api/reseller", resellerRoutes);
+app.use("/api/microTik", mikroTikRoutes);
 
 // db Relations
 User.hasMany(Reseller);
