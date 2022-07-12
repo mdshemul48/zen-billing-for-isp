@@ -6,6 +6,9 @@ import Reseller from "../../model/Reseller";
 import User from "../../model/User";
 import ResellerUser from "../../model/ResellerUser";
 
+// @route   POST api/reseller
+// @desc    creating Reseller
+// @access  Private (only for admin)
 export const resellerValidation = [body("name").isString(), body("address").isString(), body("phone").isString()];
 
 export const createReseller = async (req: Request, res: Response) => {
