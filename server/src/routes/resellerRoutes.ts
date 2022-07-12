@@ -7,7 +7,7 @@ import {
   resellerValidation,
   setResellerUser,
   setResellerUserValidation,
-} from "../controllers/reseller/reseller";
+} from "../controllers/reseller/resellerController";
 
 const router = Router();
 
