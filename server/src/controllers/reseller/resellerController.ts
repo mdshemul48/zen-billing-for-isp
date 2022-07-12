@@ -5,6 +5,7 @@ import ResellerType from "../../types/ResellerType";
 import Reseller from "../../model/Reseller";
 import User from "../../model/User";
 import ResellerUser from "../../model/ResellerUser";
+import modifiedRequest from "../../types/modifiedRequest";
 
 // @route   POST api/reseller
 // @desc    creating Reseller
@@ -83,10 +84,22 @@ export const setResellerUserValidation = [
     }),
 ];
 
-export const setResellerUser = async (req: Request, res: Response) => {
+export const setResellerUser = async (req: modifiedRequest, res: Response) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
+
   const { user, reseller } = <{ user: User; reseller: Reseller }>req.body;
+
+  if (user.role == "admin") {
+    return res.status(406).json({
+      errors: [
+        {
+          msg: "Admin don't need to assign any reseller.",
+        },
+      ],
+    });
+  }
+
   try {
     const alreadyCreated = await ResellerUser.findOne({
       where: {
