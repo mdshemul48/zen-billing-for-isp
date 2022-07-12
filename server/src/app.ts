@@ -9,6 +9,8 @@ import mainSeederFunc from "./seeders/mainSeeder";
 import User from "./model/User";
 import Reseller from "./model/Reseller";
 import Client from "./model/Client";
+import MikroTik from "./model/MikroTik";
+import ResellerUser from "./model/ResellerUser";
 
 // routes imports
 import userRoutes from "./routes/userRoutes";
@@ -23,11 +25,13 @@ app.use(express.urlencoded({ extended: true }));
 // all Routes
 app.use("/api/users", userRoutes);
 app.use("/api/reseller", resellerRoutes);
-app.use("/api/microTik", mikroTikRoutes);
+app.use("/api/mikroTik", mikroTikRoutes);
 
 // db Relations
-User.hasMany(Reseller);
-Reseller.hasMany(Client);
+Client.belongsTo(Reseller, { as: "reseller" });
+Reseller.belongsTo(MikroTik, { as: "mikroTik" });
+Reseller.belongsToMany(User, { foreignKey: "resellerId", through: ResellerUser, as: "user" });
+User.belongsToMany(Reseller, { foreignKey: "userId", through: ResellerUser, as: "reseller" });
 
 sequelize.sync({ force: false }).then(async () => {
   await mainSeederFunc();
