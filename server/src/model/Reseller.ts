@@ -2,6 +2,7 @@ import sequelize from "../config/DB";
 import Sequelize from "sequelize";
 
 class Reseller extends Sequelize.Model {
+  readonly id!: number;
   name!: string;
   address!: string;
   phone!: string;
@@ -12,6 +13,12 @@ class Reseller extends Sequelize.Model {
 
 Reseller.init(
   {
+    id: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     name: {
       type: Sequelize.STRING,
       allowNull: false,
