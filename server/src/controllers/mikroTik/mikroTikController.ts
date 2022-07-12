@@ -7,11 +7,11 @@ import MikroTikType from "../../types/MikroTikType";
 // @desc    creating new mikroTik
 // @access  Private (only for admin)
 export const createMikroTikValidation = [
-  body("name", "Name required."),
-  body("ip", "MikroTik ip is required."),
-  body("username", "Username is required."),
-  body("password", "Password is required."),
-  body("port", "port is required").isInt().withMessage("port must be number."),
+  body("name").isString().withMessage("Name required."),
+  body("ip").isString().withMessage("MikroTik ip is required."),
+  body("username").isString().withMessage("Username is required."),
+  body("password").isString().withMessage("Password is required."),
+  body("port").notEmpty().withMessage("port is required").isInt().withMessage("port must be number."),
 ];
 
 export const createMikroTik = async (req: Request, res: Response) => {
