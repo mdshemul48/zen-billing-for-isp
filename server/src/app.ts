@@ -11,6 +11,7 @@ import Reseller from "./model/Reseller";
 import Client from "./model/Client";
 import MikroTik from "./model/MikroTik";
 import ResellerUser from "./model/ResellerUser";
+import Package from "./model/Package";
 
 // routes imports
 import userRoutes from "./routes/userRoutes";
@@ -32,6 +33,8 @@ Client.belongsTo(Reseller, { as: "reseller" });
 Reseller.belongsTo(MikroTik, { as: "mikroTik" });
 Reseller.belongsToMany(User, { foreignKey: "resellerId", through: ResellerUser, as: "user" });
 User.belongsToMany(Reseller, { foreignKey: "userId", through: ResellerUser, as: "reseller" });
+Client.belongsTo(Package, { as: "package" });
+Reseller.belongsTo(Package, { as: "package" });
 
 sequelize.sync({ force: false }).then(async () => {
   await mainSeederFunc();
