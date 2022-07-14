@@ -17,6 +17,8 @@ import Package from "./model/Package";
 import userRoutes from "./routes/userRoutes";
 import resellerRoutes from "./routes/resellerRoutes";
 import mikroTikRoutes from "./routes/mikroTikRoutes";
+import packageRoutes from "./routes/packageRoutes";
+
 // application config
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -27,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", userRoutes);
 app.use("/api/reseller", resellerRoutes);
 app.use("/api/mikroTik", mikroTikRoutes);
+app.use("/api/package", packageRoutes);
 
 // db Relations
 Client.belongsTo(Reseller, { as: "reseller" });
