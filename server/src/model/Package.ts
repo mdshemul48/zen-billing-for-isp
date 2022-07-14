@@ -30,7 +30,7 @@ Package.init(
       allowNull: false,
     },
   },
-  { sequelize, modelName: "Package", createdAt: "created_at", updatedAt: "updated_at" }
+  { sequelize, modelName: "package", createdAt: "created_at", updatedAt: "updated_at" }
 );
 
 export default Package;
