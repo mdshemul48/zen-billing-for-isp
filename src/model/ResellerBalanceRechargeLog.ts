@@ -1,7 +1,7 @@
 import sequelize from "../config/DB";
 import Sequelize from "sequelize";
 
-class resellerBalanceRechargeLog extends Sequelize.Model {
+class ResellerBalanceRechargeLog extends Sequelize.Model {
   resellerId!: number;
   userId!: number;
   balance!: number;
@@ -10,7 +10,7 @@ class resellerBalanceRechargeLog extends Sequelize.Model {
   readonly createdAt!: Date;
   readonly updatedAt!: Date;
 }
-resellerBalanceRechargeLog.init(
+ResellerBalanceRechargeLog.init(
   {
     resellerId: {
       type: Sequelize.INTEGER,
@@ -38,3 +38,5 @@ resellerBalanceRechargeLog.init(
     updatedAt: "updated_at",
   }
 );
+
+export default ResellerBalanceRechargeLog;

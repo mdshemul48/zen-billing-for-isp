@@ -2,6 +2,7 @@ import sequelize from "../config/DB";
 import Sequelize from "sequelize";
 
 class Reseller extends Sequelize.Model {
+  [x: string]: any;
   readonly id!: number;
   name!: string;
   address!: string;

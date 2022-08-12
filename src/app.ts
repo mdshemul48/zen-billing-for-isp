@@ -5,7 +5,7 @@ dotenv.config();
 import sequelize from "./config/DB";
 import mainSeederFunc from "./seeders/mainSeeder";
 
-// models
+// models imports
 import User from "./model/User";
 import Reseller from "./model/Reseller";
 import Client from "./model/Client";
@@ -13,6 +13,8 @@ import MikroTik from "./model/MikroTik";
 import ResellerUser from "./model/ResellerUser";
 import Package from "./model/Package";
 import ResellerHasPackage from "./model/ResellerHasPackage";
+import ResellerBalanceRechargeLog from "./model/ResellerBalanceRechargeLog";
+
 // routes imports
 import userRoutes from "./routes/userRoutes";
 import resellerRoutes from "./routes/resellerRoutes";
@@ -41,6 +43,9 @@ Reseller.belongsToMany(Package, {
   as: "package",
   through: ResellerHasPackage,
 });
+
+Reseller.hasMany(ResellerBalanceRechargeLog, { as: "rechargeLog" });
+ResellerBalanceRechargeLog.hasMany(Reseller, { as: "reseller", foreignKey: "resellerId" });
 
 sequelize.sync({ force: false }).then(async () => {
   await mainSeederFunc();
