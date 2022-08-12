@@ -8,17 +8,17 @@ const authentication = async (req: modifiedRequest, res: Response, next: NextFun
   try {
     const token = req.header("Authorization")!.replace("Bearer ", "");
     if (!token) {
-      return res.status(401).json({ msg: "No token, authorization denied" });
+      return res.status(401).json({ errors: [{ msg: "No token, authorization denied" }] });
     }
     const decoded = <userInterface>jwt.verify(token, process.env.JWT_SECRET!);
     if (!decoded) {
-      return res.status(401).json({ msg: "Token is not valid" });
+      return res.status(401).json({ errors: [{ msg: "Token is not valid" }] });
     }
 
     req.user = decoded;
     next();
   } catch (err) {
-    res.status(401).json({ msg: "Token is not valid" });
+    res.status(401).json({ errors: [{ msg: "Token is not valid" }] });
   }
 };
 
