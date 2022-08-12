@@ -8,6 +8,7 @@ class Client extends Sequelize.Model {
   password!: string;
   billingCycle!: number;
   clientStatus!: "active" | "inactive" | "suspended" | "pending";
+  billingDate!: Date;
   // client info
   name!: string;
   address!: string | null;
@@ -45,11 +46,16 @@ Client.init(
       allowNull: false,
       type: Sequelize.INTEGER,
     },
+    billingDate: {
+      allowNull: false,
+      type: Sequelize.DATE,
+    },
     clientStatus: {
       allowNull: false,
       type: Sequelize.ENUM("active", "inactive", "suspended", "pending"),
       defaultValue: "pending",
     },
+
     name: {
       allowNull: false,
       type: Sequelize.STRING,
