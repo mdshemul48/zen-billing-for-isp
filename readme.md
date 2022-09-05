@@ -1,6 +1,6 @@
 # Zen Billing For ISP
 ## Description
-This software is my project. Through this software, an ISP can manage customers and do billing-related work. 
+This software is one of my personal project. Through this software, an ISP can manage customers and do billing-related work. 
 
 With this software, an ISP will be able to manage all its customers and if a client does not pay their bill in a month, their internet connection will be automatically shut down by this billing software. Again if the customer pays his internet bills then his internet connection will be activated automatically by this software.
 
