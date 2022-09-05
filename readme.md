@@ -1,3 +1,9 @@
+This software is my project. Through this software, an ISP can manage customers and do billing-related work. 
+
+With this software, an ISP will be able to manage all its customers and if a client does not pay their bill in a month, their internet connection will be automatically shut down by this billing software. Again if the customer pays his internet bills then his internet connection will be activated automatically by this software.
+
+This software will have various other features that can be used by internet service providers to manage their clients and this software will work with Mikrotik through API.
+ 
  ## Backend Server Mini Map
  This is the project structure for backend. this shows were all controller, route and model are located.
 ```
