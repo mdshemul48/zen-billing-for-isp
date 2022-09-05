@@ -6,6 +6,9 @@ With this software, an ISP will be able to manage all its customers and if a cli
 
 This software will have various other features that can be used by internet service providers to manage their clients and this software will work with Mikrotik through API.
  
+ ### Skills Utilized In This Project
+ ![My Skills](https://skillicons.dev/icons?i=nodejs,ts,express,mysql,react&perline=6)
+ 
  ## Backend Server Mini Map
  This is the project structure for backend. this shows were all controller, route and model are located.
 ```
