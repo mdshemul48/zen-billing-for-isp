@@ -17,8 +17,14 @@ export const setPackageForReseller = async (req: Request, res: Response) => {
 
   const transaction = await sequelize.transaction();
   try {
+    await ResellerHasPackage.destroy({ where: { resellerId: resellerId } });
+
     const packageIdWithReseller = packageIds.map((packageId) => ({ resellerId, packageId }));
-    const packageAdded = await ResellerHasPackage.bulkCreate(packageIdWithReseller, { transaction });
+    const packageAdded = await ResellerHasPackage.bulkCreate(packageIdWithReseller, {
+      fields: ["resellerId", "packageId"],
+      updateOnDuplicate: ["resellerId", "packageId"],
+      transaction,
+    });
     await transaction.commit();
 
     return res.status(201).json({ msg: "package added to reseller successfully", packageAdded });
